@@ -1,50 +1,41 @@
 #!/bin/sh
 
-USER_DRAW=()
+USER_DRAW=()i
 DATE=$(date +'%Y%d%m')
 LOTONUM=$(cat lotoNum.$DATE)
 COUNT=0
 while [ $COUNT -le 5 ]
 do
-	if (( $COUNT == 0 ))
-	then
-		echo "Please enter a number between 1 and 50"
-		read num
-		USER_DRAW+=($num)
-		((COUNT++))
+	echo "Please enter a number between 1 and 50"
+	read num
 
-	elif (( $num >= 1 )) && (( $num <= 50 )) && (( $COUNT <= 4 ))
-	then
-		echo "Please enter a number between 1 and 50"
-		read num
-		USER_DRAW+=($num)
-		((COUNT++))
-
-	elif (( $num >= 1 )) && (( $num <= 50 )) && (( $COUNT == 5 ))
+	if (( $num >=1 )) && (( $num <= 50 )) && (( $COUNT < 5 ))
 	then 
-		echo "Please enter power ball number"
-      		read num
+		USER_DRAW+=($num)
+		((COUNT++))
+	
+	elif (( $num >=1 )) && (( $num <= 50 )) && (( $COUNT == 5 ))
+	then
+		echo "This was your power ball number"
 		USER_DRAW+=($num)
 		((COUNT++))
 		break
-	else	
-		echo "Please Enter a new variable"
+	else
+		continue
 	fi
 done
-
-echo ${USER_DRAW[@]}
 
 COUNT=0
 
 for i in ${USER_DRAW[@]}
 do
-	if grep -q $i lotoNum.$DATE 
+	
+	if grep -owF $i lotoNum.$DATE 
 	then
 		((COUNT++))
+	
 	fi	
 done
-
-echo $COUNT
 
 case $COUNT in
 
