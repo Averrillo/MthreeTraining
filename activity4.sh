@@ -19,19 +19,15 @@ else
 	echo "Password must be 8 or more charactors"
 fi
 
-#if test $len -ge 8
-#then
-#	echo $password | grep [A-Za-Z][0-9] | grep "[@#$%^&*]"
-#	
-#	if $? -ne 0
-#	then
-#		"Password must contain uppercase, lowercase, number and special charactor"
-#	else
-#		"Strong Password"
-#	fi
-#else
-#	echo "Password must be 8 or more charactors"
-#fi
+
+
+
+
+
+
+
+
+
 
 
 
